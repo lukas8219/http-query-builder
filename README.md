@@ -6,11 +6,11 @@ The API uses queryParams for dynamic SQl quering
 
 It follows this standard
 
-<modelAttribute>$<operator>=<value>
+modelAttribute$operator=value
 
 We can sort using the following
 
-sort.attribute=<modelAttribute>&sort.order=<ASC|DESC>
+sort.attribute=modelAttribute&sort.order=ASC|DESC
 
 ## Typing
 

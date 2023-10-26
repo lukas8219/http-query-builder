@@ -15,14 +15,14 @@ export type SingleSelectResult<R extends {}, T extends SelectField<R>> = Record<
 export type NestedValueOf<Obj, Key extends string> =
     Key extends keyof Obj
     ? Obj[Key]
-    : Obj extends (infer T)[]
-    ? Key extends keyof T
-    ? T[Key]
+    : Obj extends (infer T | undefined)[]
+    ? Key extends keyof T | undefined
+    ? T extends object | undefined ? T[Key] : never
     : never
-    : Obj extends object
+    : Obj extends object | undefined
     ? Key extends `${infer Parent}.${infer Rest}`
-    ? Parent extends keyof Obj
-    ? NestedValueOf<Obj[Parent], Rest>
+    ? Parent extends keyof Obj | undefined
+    ? NestedValueOf<Exclude<Obj[Parent], undefined>, Rest>
     : never
     : never
     : never;
